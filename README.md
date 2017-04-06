@@ -59,7 +59,7 @@ The source code was tested on the following Lisp implementations:
 * [SBCL](http://www.sbcl.org/) 1.0.55 for Windows.
 
 
-The Ystok-Library contains both the ASDlite/[ASDF](https://common-lisp.net/project/asdf/)-based ycard.asd and the LispWorks-based defsys.lisp system definition files.
+The Ystok-Library contains both the [ASDlite](https://github.com/RN-S1/ASDlite)/[ASDF](https://common-lisp.net/project/asdf/)-based ycard.asd and the LispWorks-based defsys.lisp system definition files.
 
 
 <i>forked from</i><br>
