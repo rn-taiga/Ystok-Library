@@ -1,0 +1,171 @@
+2013-01-26 (1.4.025)
+      + Added optional dependence on the YSTOK-FFC system.
+      * Renamed file yl-package.lisp to package.lisp.
+      + Added yl-ffc.lisp (contains code from locale.lisp):
+	** locale-specific character case conversion,
+        ** initialization of locale global settings from
+	   Windows API on LispWorks and SBCL.
+      + Added ffc-compat.lisp for other platforms.
+      + locale.lisp
+	** removed special variable *internal-format*
+	   (in favour of ffc:*foreign-external-format*),
+	** removed code for OS-specific initialization,
+	** removed FFI calls.
+      - Removed file win32.lisp
+	-- its code moved to YSTOK-FFC and yl-ffc.lisp.
+      * octets.lisp
+	++ added octets-to-string and string-to-octets
+	   (actually moved from ACL-COMPAT lite module,
+	   the acl-compat.excl package imports these symbols from
+	   the ystok.library package from now on).
+
+2012-12-18 (1.3.023)
+      * file-utils.lisp
+	++ added function load-list.
+      * debug.lisp
+	++ added :module log option controlling output,
+	** changed log record format: timestamp now goes first.
+
+      * functions.lisp
+	++ added functions hex-digit-char-p.
+	** the generic object-hex-string changed signature:
+	     (object &optional char interval bit-count).
+
+      + octets.lisp - collection of types and functions reloated to
+	octets vectors.
+	** the type octet-vector renamed to simple-octet-vector,
+	   new definition of the octet-vector is (vector octet),
+        ++ added macro make-octet-vector,
+	++ added functions integer-to-octets, octets-to-signed,
+	   octets-to-unsigned, and octet-vector,
+	++ added functions hex-string-to-octets and octet-and.
+	++ added #V macrocharacter for reading octet vectors:
+	   #V"string", #nVinteger, and #nV(list),
+	** #<method object-hex-string (vector)> moved from functions.lisp.
+
+2012-11-12 (1.2.022)
+      * locale.lisp
+        ++ added function ef-type for computing stream type from
+	   an external format designator;
+	++ added primitives for run-time language support:
+	   *language-subtag-map* - language tag to primary subtag map,
+	   *language* - default application language,
+	   bundle - language-related structure type,
+	   label (keword, list or string) files containing
+	     localized strings,
+	   gettext - function replacing a label similar to one from
+	     cl-i18n.
+      * debug.lisp
+	++ added log optoin :info,
+	** the function logg accepts a dotted list of options.
+      * lw-compat.lisp: added macro rebinding
+
+2012-04-18 (1.2.021)
+      * localization primitives moved to files into the lang/ 
+	subdirectory: de.lisp, ru.lisp,
+      * functions.lisp: fixed bug in char-position for implementations
+	other than LispWorks,
+      * general code clean-up.
+
+2012-01-07 (1.2.020)
+      * functions.lisp: added tiny evaluator
+	++ function tiny-eval,
+	++ specials *tiny-environment*, *tiny-symbol-value-function*,
+	   and *tiny-setq-function*.
+      * locale.lisp: added function locale-string-capitalize.
+
+2010-09-23 (1.2.019)
+      *	macros.lisp
+	++ added macro removef,
+      	++ added macros appendf, nconcf and push-end, which are
+	   imported from LW and also defined in lw-compat.lisp.
+      * file-utils.lisp
+	** pathname-equal - versions are only compared on specific platforms
+	   and:UNSPECIFIC and NIL are considered equal from now on;
+	** get-folder-namestring is removed and replaced by get-folder;
+	++ get-file-title added for rendering file names in accordance to user
+	   preference, actually differs from file-namestring only on Windows.
+
+2009-09-16 (1.2.018)
+      * debug.lisp 
+ 	** improved logg function:
+	   - added option :error,
+	   - format-controller can be a condition object,
+	++ added condition helped-condition, which contains help-key slot,
+	   and subclasses simple-herror and simple-hwarning,
+	++ added signaling functions herror, hcerror, and hwarn.
+
+2009-05-05 (1.2.017)
+      * debug.lisp: general log facility added
+	++ *log-stream* and *log-options* specials,
+	++ logg function.
+      * lw-compat.lisp:
+	++ added when-let* macro;
+	** string-append turned into function.
+      * file-utils.lisp (a la lw-compat):
+	++ added functions current-pathname, pathname-location
+      * ys-stub.lisp: added thys-preference function.
+
+2009-03-05 (1.2.016)
+      * functions.lisp
+	++ added char-position, split-seq-if.
+	++ added split compartible wiht cl-pre:split but based on
+	   lw:find-regexp-in-string (Emacs-like regular expressions).
+
+2008-11-23 (1.1.015)
+      * locale.lisp: ~f was improved on LispWork - now atsign (@) works
+	for non-negative numbers even if both w are d are null.
+
+2008-11-19 (1.1.014 Professional Edition only)
+      * systema.lisp
+	++ new %initialize-preferences function was defined in order to set
+	   global values for preferences variables; the function was added as
+	   "Set special preferences" action to the "Initialize product" list.
+
+2008-08-14 (1.1.013)
+      * file-utils.lisp
+	++ added function pathname-equal.
+
+2008-05-29 (1.1.012)
+      * functions.lisp
+	++ added function split, an equivalent of Edi Weits's cl-ppcre
+	   split but based on LispWorks lw:find-regexp-in-string.
+      + file-utils.lisp added.
+
+2008-04-16 (1.1.011)
+      * functions.lisp
+	** insert now allows negative integers as after or before arguments
+	   for specifing positions form the end of a list,
+	++ added string-append* accepting the last spread argument.
+
+2008-03-21 (1.1.010)
+      * locale.lisp
+	** fixed bug in function ~$ when printing with thousand separator.
+
+2008-01-24 (1.1.009)
+      * meta-parse.lisp
+	** amended list match procedure in order to treat top-level patterns correctly,
+	++ list match was augmented by dotted patterns.
+
+2007-10-14 (1.1.008)
+      * debug.lisp
+	++ added macro with-restarts binding control variables %allow-quit% and
+	   %allow-debug%, which were borrowed from ywidgets/capi-hacks.lisp
+
+2007-08-31 (1.1.007)
+      * Adapted and tested for LispWorks 5.0.
+	** systema.lisp: featured out the stuff relied on the partial-sort package.
+
+2007-02-28 (1.0.006)
+      * systema.lisp: the patch-module function now
+	++ additionally accepts the callback paramater,
+	** can handle a list of patch functions that are hard-wired into the delivered.
+
+2007-01-14 (1.0.005)
+      * ys-product.lisp
+	++ slot-documentation
+
+2005-09-03 (0.1.000)
+      * locale.lisp:
+	** fixed versions of ~f and ~e for the platforms other than Windows or Linux.
+	++ added decline-word, genderize-word, and odinalize-tail.
