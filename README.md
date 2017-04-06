@@ -42,7 +42,7 @@ The meta-parse-number.lisp file in the distribution bundle presents an example o
 LispWorks compatibility code
 ----------------------------
 
-The lw-compat.lisp file contains reimplementation of useful primitives from [LispWorks](http://lisp.ystok.ru/links.html#LispWorks) <code>system</code> and <code>lispworks</code> packages.
+The lw-compat.lisp file contains reimplementation of useful primitives from [LispWorks](http://www.lispworks.com/) <code>system</code> and <code>lispworks</code> packages.
 * Macros <code>appendf</code>, <code>nconcf</code>, <code>push-end</code>, <code>when-let</code>, <code>when-let*</code>.
 * Functions <code>cdr-assoc</code>, <code>remove-properties</code>, <code>string-append</code>, and the like.
 
